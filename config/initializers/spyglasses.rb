@@ -1,6 +1,6 @@
 Spyglasses.configure do |config|
   config.api_key = ENV['SPYGLASSES_API_KEY']
-  config.debug = true
+  config.debug = ENV['SPYGLASSES_DEBUG']
   config.platform_type = 'rails'
   config.exclude_paths = [
     '/rails/active_storage',  # Exclude Active Storage routes
