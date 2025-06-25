@@ -1,31 +1,39 @@
-# fly.toml app configuration file generated for oxidizer-demo on 2023-06-07T16:35:27-07:00
+# fly.toml app configuration file generated for spyglasses-rails-example on 2025-06-25T13:47:44-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "oxidizer-demo"
-primary_region = "sjc"
-kill_signal = "SIGINT"
-kill_timeout = "5s"
+app = 'spyglasses-rails-example'
+primary_region = 'sjc'
+kill_signal = 'SIGINT'
+kill_timeout = '5s'
+console_command = '/rails/bin/rails console'
 
 [experimental]
   auto_rollback = true
 
+[build]
+
 [env]
-  PRIMARY_REGION = "sjc"
+  PRIMARY_REGION = 'sjc'
+
+[[mounts]]
+  source = 'data'
+  destination = '/data'
 
 [http_service]
   internal_port = 3000
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 1
-  processes = ["app"]
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
 
 [[statics]]
-  guest_path = "/rails/public"
-  url_prefix = "/"
-
-[mounts]
-  source="oxidizer_demo_litestack_data"
-  destination="/data"
+  guest_path = '/rails/public'
+  url_prefix = '/'

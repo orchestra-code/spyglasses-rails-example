@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.1"
+ruby "3.2.8"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1"
@@ -86,3 +86,6 @@ gem "superview", github: "rubymonolith/superview", branch: "main"
 gem "superform", github: "rubymonolith/superform", branch: "main"
 
 gem "rouge", "~> 4.1"
+
+# AI Agent Detection and SEO
+gem 'spyglasses'
