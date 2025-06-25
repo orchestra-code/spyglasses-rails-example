@@ -88,4 +88,4 @@ gem "superform", github: "rubymonolith/superform", branch: "main"
 gem "rouge", "~> 4.1"
 
 # AI Agent Detection and SEO
-gem 'spyglasses'
+gem 'spyglasses', "~> 1.1"

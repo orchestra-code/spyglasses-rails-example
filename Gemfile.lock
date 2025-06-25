@@ -290,7 +290,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    spyglasses (1.0.1)
+    spyglasses (1.1.1)
       json (>= 2.0)
       rack (>= 2.0)
     sqlite3 (1.6.9-arm64-darwin)
@@ -350,7 +350,7 @@ DEPENDENCIES
   rspec-rails (~> 6.0)
   selenium-webdriver
   sprockets-rails
-  spyglasses
+  spyglasses (~> 1.1)
   sqlite3 (~> 1.4)
   stimulus-rails
   superform!
