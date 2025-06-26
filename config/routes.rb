@@ -26,5 +26,6 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-  root to: "blogs#index"
+  # Static homepage
+  root to: "home#index"
 end
