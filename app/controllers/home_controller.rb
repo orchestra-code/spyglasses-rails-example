@@ -4,6 +4,8 @@ class HomeController < ApplicationController
   # Skip the assignable behavior since this is a static page
   skip_before_action :assign_parent_collection, :assign_parent_member, :assign_collection, :assign_member
   class Index < ApplicationView
+    attr_writer :user_agent, :is_ai_agent
+
     def title
       "Spyglasses Rails Demo"
     end
@@ -64,13 +66,13 @@ class HomeController < ApplicationController
           
           div(class: "detection-status") do
             # Check if current request is from AI
-            if request.headers['User-Agent']&.match?(/ChatGPT|Claude|GPTBot|ClaudeBot|Perplexity/i)
+            if @is_ai_agent
               article(class: "ai-detected") do
                 h3(style: "color: #e74c3c;") { "🤖 AI Agent Detected!" }
                 p do
                   plain "Your request has been identified as coming from an AI agent or crawler. "
                   strong { "User Agent: " }
-                  code { request.headers['User-Agent']&.truncate(100) }
+                  code { @user_agent&.truncate(100) }
                 end
               end
             else
@@ -79,7 +81,7 @@ class HomeController < ApplicationController
                 p do
                   plain "Your request appears to be from a human visitor. "
                   strong { "User Agent: " }
-                  code { request.headers['User-Agent']&.truncate(100) }
+                  code { @user_agent&.truncate(100) }
                 end
               end
             end
@@ -149,6 +151,12 @@ class HomeController < ApplicationController
   end
 
   def index
-    render Index.new
+    user_agent = request.headers['User-Agent']
+    is_ai_agent = user_agent&.match?(/ChatGPT|Claude|GPTBot|ClaudeBot|Perplexity/i) || false
+    
+    render Index.new.tap do |view|
+      view.user_agent = user_agent
+      view.is_ai_agent = is_ai_agent
+    end
   end
 end 
