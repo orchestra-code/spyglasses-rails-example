@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  # Skip the assignable behavior since this is a static page
+  skip_before_action :assign_parent_collection, :assign_parent_member, :assign_collection, :assign_member
   class Index < ApplicationView
     def title
       "Spyglasses Rails Demo"
