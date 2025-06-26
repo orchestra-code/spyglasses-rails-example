@@ -3,87 +3,292 @@
 class HomeController < ApplicationController
   # Skip the assignable behavior since this is a static page
   skip_before_action :assign_parent_collection, :assign_parent_member, :assign_collection, :assign_member
+  
   class Index < ApplicationView
-    attr_writer :user_agent, :is_ai_agent
-
     def title
-      "Spyglasses Rails Demo"
+      "Spyglasses - AI SEO & Analytics Platform | Detect and Manage AI Traffic"
     end
 
     def subtitle
-      "AI Agent Detection in Action"
+      nil # No subtitle for this layout
     end
 
     def template
+      # Custom styles embedded in the view
+      style do
+        plain <<~CSS
+          .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin: -2rem -2rem 3rem -2rem;
+          }
+          
+          .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+          }
+          
+          .hero-section .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          
+          .highlight {
+            background: linear-gradient(120deg, #ffd89b 0%, #19547b 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+          }
+          
+          .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+          }
+          
+          .feature-card {
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+          }
+          
+          .feature-card:hover {
+            transform: translateY(-5px);
+          }
+          
+          .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+          }
+          
+          .ai-seo-section {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 60px 2rem;
+            margin: 3rem -2rem;
+            border-radius: 12px;
+          }
+          
+          .ai-seo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+          }
+          
+          .stats-section {
+            background: #2d3748;
+            color: white;
+            padding: 60px 2rem;
+            margin: 3rem -2rem;
+            border-radius: 12px;
+            text-align: center;
+          }
+          
+          .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+          }
+          
+          .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #63b3ed;
+          }
+          
+          @media (max-width: 768px) {
+            .hero-section h1 {
+              font-size: 2.5rem;
+            }
+            
+            .ai-seo-content {
+              grid-template-columns: 1fr;
+              gap: 2rem;
+            }
+            
+            .stats-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+        CSS
+      end
+
       # Hero Section
-      section(class: "hero") do
+      section(class: "hero-section") do
         div(class: "container") do
-          p(class: "lead") do
-            plain "This Rails application demonstrates "
-            strong { "Spyglasses" }
-            plain " - an AI agent detection service that protects your web content from unauthorized AI crawlers and training bots."
+          h1 do
+            plain "The Future of "
+            span(class: "highlight") { "AI SEO" }
+            plain " is Here"
           end
+          p(class: "subtitle") do
+            plain "Discover, track, and optimize your website's AI traffic with the most advanced "
+            strong { "AI analytics platform" }
+            plain " designed for the age of artificial intelligence."
+          end
+          link_to("https://www.spyglasses.io", role: "button", target: "_blank") { "Start Free Trial" }
         end
       end
 
       # Features Section
       section do
         div(class: "container") do
-          h2 { "How It Works" }
+          h2 do
+            plain "Revolutionary "
+            span(class: "highlight") { "AI Traffic Detection" }
+          end
           
-          div(class: "grid") do
-            # Real-time Detection
-            article do
-              h3 { "🔍 Real-time Detection" }
+          div(class: "feature-grid") do
+            article(class: "feature-card") do
+              div(class: "feature-icon") { "🤖" }
+              h3 { "AI Agent Detection" }
               p do
-                plain "Automatically identifies AI agents, crawlers, and training bots visiting your site using advanced pattern matching and user agent analysis."
+                plain "Detect and track visits from ChatGPT, Claude, Perplexity, and other AI agents. Our "
+                strong { "AI SEO tools" }
+                plain " reveal the hidden traffic that traditional analytics miss."
               end
             end
 
-            # Flexible Blocking
-            article do
-              h3 { "🛡️ Flexible Blocking" }
+            article(class: "feature-card") do
+              div(class: "feature-icon") { "📊" }
+              h3 { "Advanced AI Analytics" }
               p do
-                plain "Configure custom allow/block rules for different AI services. Protect your content while allowing legitimate access when needed."
+                plain "Get comprehensive insights into your "
+                strong { "AI traffic patterns" }
+                plain " with our industry-leading analytics platform designed specifically for AI-driven web interactions."
               end
             end
 
-            # Analytics & Insights
-            article do
-              h3 { "📊 Analytics & Insights" }
+            article(class: "feature-card") do
+              div(class: "feature-icon") { "🛡️" }
+              h3 { "Smart Traffic Control" }
               p do
-                plain "Track which AI services are accessing your content, monitor detection patterns, and gain insights into automated traffic."
+                plain "Protect your content from unwanted AI crawlers while optimizing for beneficial "
+                strong { "AI search engine optimization" }
+                plain ". Take control of your digital presence."
+              end
+            end
+
+            article(class: "feature-card") do
+              div(class: "feature-icon") { "🚀" }
+              h3 { "AI SEO Optimization" }
+              p do
+                plain "Optimize your website for AI-powered search engines and chatbots. Our platform helps you rank higher in "
+                strong { "AI search results" }
+                plain " and conversational queries."
+              end
+            end
+
+            article(class: "feature-card") do
+              div(class: "feature-icon") { "🔗" }
+              h3 { "Universal Integration" }
+              p do
+                plain "Seamlessly integrate with any website platform including Rails, Django, WordPress, Next.js, and more. Our "
+                strong { "AI analytics tools" }
+                plain " work everywhere."
+              end
+            end
+
+            article(class: "feature-card") do
+              div(class: "feature-icon") { "⚡" }
+              h3 { "Real-Time Monitoring" }
+              p do
+                plain "Monitor your "
+                strong { "AI traffic" }
+                plain " in real-time with instant alerts and detailed reports. Stay ahead of the curve in the evolving landscape of artificial intelligence."
               end
             end
           end
         end
       end
 
-      # Detection Status
-      section do
+      # AI SEO Section
+      section(class: "ai-seo-section") do
         div(class: "container") do
-          h2 { "Current Detection Status" }
-          
-          div(class: "detection-status") do
-            # Check if current request is from AI
-            if @is_ai_agent
-              article(class: "ai-detected") do
-                h3(style: "color: #e74c3c;") { "🤖 AI Agent Detected!" }
-                p do
-                  plain "Your request has been identified as coming from an AI agent or crawler. "
-                  strong { "User Agent: " }
-                  code { @user_agent&.truncate(100) }
+          div(class: "ai-seo-content") do
+            div do
+              h2 do
+                plain "Master "
+                span(class: "highlight") { "AI SEO" }
+                plain " & Analytics"
+              end
+              p do
+                plain "Traditional "
+                strong { "SEO strategies" }
+                plain " aren't enough anymore. With AI agents like ChatGPT and Claude becoming primary sources of information discovery, you need specialized "
+                strong { "AI SEO tools" }
+                plain " to stay competitive."
+              end
+              p do
+                plain "Spyglasses provides the most comprehensive "
+                strong { "AI analytics platform" }
+                plain " to help you understand, track, and optimize for AI-driven traffic. Whether you're focused on "
+                strong { "AI search engine optimization" }
+                plain " or need advanced "
+                strong { "AI traffic analytics" }
+                plain ", we've got you covered."
+              end
+              p do
+                plain "Join the future of digital marketing with our cutting-edge "
+                strong { "AI SEO platform" }
+                plain " that reveals insights traditional analytics tools simply cannot provide."
+              end
+            end
+            div do
+              article(style: "background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);") do
+                h4(style: "margin-bottom: 1rem; color: #2d3748;") { "AI Traffic Sources" }
+                div(style: "margin-bottom: 1rem;") do
+                  div(style: "background: #8e24aa; height: 20px; border-radius: 10px; margin-bottom: 0.5rem;")
+                  small { "ChatGPT • 45% of AI traffic" }
+                end
+                div(style: "margin-bottom: 1rem;") do
+                  div(style: "background: #ed8936; height: 15px; border-radius: 10px; margin-bottom: 0.5rem; width: 70%;")
+                  small { "Claude AI • 32% of AI traffic" }
+                end
+                div(style: "margin-bottom: 1rem;") do
+                  div(style: "background: #38b2ac; height: 10px; border-radius: 10px; margin-bottom: 0.5rem; width: 45%;")
+                  small { "Perplexity • 23% of AI traffic" }
                 end
               end
-            else
-              article(class: "human-detected") do
-                h3(style: "color: #27ae60;") { "✅ Human Visitor" }
-                p do
-                  plain "Your request appears to be from a human visitor. "
-                  strong { "User Agent: " }
-                  code { @user_agent&.truncate(100) }
-                end
-              end
+            end
+          end
+        end
+      end
+
+      # Stats Section
+      section(class: "stats-section") do
+        div(class: "container") do
+          h2 { "Trusted by Forward-Thinking Companies" }
+          div(class: "stats-grid") do
+            div(class: "stat-item") do
+              h3 { "500+" }
+              p { "Websites Protected" }
+            end
+            div(class: "stat-item") do
+              h3 { "50M+" }
+              p { "AI Requests Analyzed" }
+            end
+            div(class: "stat-item") do
+              h3 { "99.9%" }
+              p { "Detection Accuracy" }
+            end
+            div(class: "stat-item") do
+              h3 { "24/7" }
+              p { "Real-time Monitoring" }
             end
           end
         end
@@ -101,11 +306,14 @@ class HomeController < ApplicationController
                 # Gemfile
                 gem 'spyglasses', '~> 1.1'
 
-                # config/application.rb
-                config.middleware.use Spyglasses::Middleware,
-                  api_key: ENV['SPYGLASSES_API_KEY'],
-                  platform_type: 'rails',
-                  auto_sync: true
+                # config/initializers/spyglasses.rb
+                Spyglasses.configure do |config|
+                  config.api_key = ENV['SPYGLASSES_API_KEY']
+                  config.platform_type = 'rails'
+                  config.auto_sync = true
+                end
+
+                Rails.application.config.middleware.use Spyglasses::Middleware
               CODE
             end
           end
@@ -116,34 +324,32 @@ class HomeController < ApplicationController
       section do
         div(class: "container") do
           h2 { "Explore the Demo" }
-          p { "This Rails application includes a complete blog system to test with:" }
+          p { "This Rails application includes a complete blog system to demonstrate Spyglasses in action:" }
           
           div(class: "grid") do
             article do
               h4 { "📝 Blog System" }
-              p { "Create blogs, write posts, and see how Spyglasses protects your content." }
+              p { "Create blogs, write posts, and see how Spyglasses protects your content from AI crawlers." }
               link_to("/blogs", role: "button") { "View Blogs" }
             end
             
             article do
-              h4 { "🔧 Test Detection" }
-              p { "Try accessing this site with different user agents to see detection in action." }
-              button(onclick: "location.reload()", role: "button", class: "secondary") { "Refresh Page" }
+              h4 { "🔧 Live Protection" }
+              p { "AI detection and protection is running silently in the background on every request." }
+              link_to("https://www.spyglasses.io/docs", role: "button", class: "secondary", target: "_blank") { "View Documentation" }
             end
           end
         end
       end
 
       # Footer CTA
-      section(style: "background-color: var(--pico-muted-color); margin-top: 2rem; padding: 2rem 0;") do
+      section(style: "background: linear-gradient(135deg, #8e24aa 0%, #7b1fa2 100%); color: white; margin-top: 3rem; padding: 3rem 2rem; margin-left: -2rem; margin-right: -2rem; border-radius: 12px; text-align: center;") do
         div(class: "container") do
-          div(style: "text-align: center;") do
-            h3 { "Ready to Protect Your Content?" }
-            p { "Get started with Spyglasses and take control of AI access to your web applications." }
-            div do
-              link_to("https://spyglasses.dev", role: "button", style: "margin: 0.5rem;") { "Learn More" }
-              link_to("https://github.com/spyglasses", role: "button", class: "secondary", style: "margin: 0.5rem;") { "View on GitHub" }
-            end
+          h3 { "Ready to Master AI SEO?" }
+          p(style: "font-size: 1.1rem; margin-bottom: 2rem;") { "Get started with Spyglasses and take control of AI access to your web applications." }
+          div do
+            link_to("https://www.spyglasses.io", role: "button", style: "margin: 0.5rem; background: white; color: #8e24aa;", target: "_blank") { "Start Free Trial" }
+            link_to("https://github.com/spyglasses", role: "button", class: "secondary", style: "margin: 0.5rem; border-color: white; color: white;", target: "_blank") { "View on GitHub" }
           end
         end
       end
@@ -151,12 +357,6 @@ class HomeController < ApplicationController
   end
 
   def index
-    user_agent = request.headers['User-Agent']
-    is_ai_agent = user_agent&.match?(/ChatGPT|Claude|GPTBot|ClaudeBot|Perplexity/i) || false
-    
-    view = Index.new
-    view.user_agent = user_agent
-    view.is_ai_agent = is_ai_agent
-    render view
+    render Index.new
   end
 end 
