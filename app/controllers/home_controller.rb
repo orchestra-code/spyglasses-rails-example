@@ -269,31 +269,6 @@ class HomeController < ApplicationController
         end
       end
 
-      # Stats Section
-      section(class: "stats-section") do
-        div(class: "container") do
-          h2 { "Trusted by Forward-Thinking Companies" }
-          div(class: "stats-grid") do
-            div(class: "stat-item") do
-              h3 { "500+" }
-              p { "Websites Protected" }
-            end
-            div(class: "stat-item") do
-              h3 { "50M+" }
-              p { "AI Requests Analyzed" }
-            end
-            div(class: "stat-item") do
-              h3 { "99.9%" }
-              p { "Detection Accuracy" }
-            end
-            div(class: "stat-item") do
-              h3 { "24/7" }
-              p { "Real-time Monitoring" }
-            end
-          end
-        end
-      end
-
       # Integration Example
       section do
         div(class: "container") do
@@ -328,12 +303,6 @@ class HomeController < ApplicationController
           
           div(class: "grid") do
             article do
-              h4 { "📝 Blog System" }
-              p { "Create blogs, write posts, and see how Spyglasses protects your content from AI crawlers." }
-              link_to("/blogs", role: "button") { "View Blogs" }
-            end
-            
-            article do
               h4 { "🔧 Live Protection" }
               p { "AI detection and protection is running silently in the background on every request." }
               link_to("https://www.spyglasses.io/docs", role: "button", class: "secondary", target: "_blank") { "View Documentation" }
@@ -349,7 +318,7 @@ class HomeController < ApplicationController
           p(style: "font-size: 1.1rem; margin-bottom: 2rem;") { "Get started with Spyglasses and take control of AI access to your web applications." }
           div do
             link_to("https://www.spyglasses.io", role: "button", style: "margin: 0.5rem; background: white; color: #8e24aa;", target: "_blank") { "Start Free Trial" }
-            link_to("https://github.com/spyglasses", role: "button", class: "secondary", style: "margin: 0.5rem; border-color: white; color: white;", target: "_blank") { "View on GitHub" }
+            link_to("https://github.com/orchestra-code/spyglasses-ruby", role: "button", class: "secondary", style: "margin: 0.5rem; border-color: white; color: white;", target: "_blank") { "View the plugin source on GitHub" }
           end
         end
       end
