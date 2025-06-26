@@ -295,22 +295,6 @@ class HomeController < ApplicationController
         end
       end
 
-      # Demo Features
-      section do
-        div(class: "container") do
-          h2 { "Explore the Demo" }
-          p { "This Rails application includes a complete blog system to demonstrate Spyglasses in action:" }
-          
-          div(class: "grid") do
-            article do
-              h4 { "🔧 Live Protection" }
-              p { "AI detection and protection is running silently in the background on every request." }
-              link_to("https://www.spyglasses.io/docs", role: "button", class: "secondary", target: "_blank") { "View Documentation" }
-            end
-          end
-        end
-      end
-
       # Footer CTA
       section(style: "background: linear-gradient(135deg, #8e24aa 0%, #7b1fa2 100%); color: white; margin-top: 3rem; padding: 3rem 2rem; margin-left: -2rem; margin-right: -2rem; border-radius: 12px; text-align: center;") do
         div(class: "container") do
