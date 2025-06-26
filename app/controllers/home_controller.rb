@@ -154,9 +154,9 @@ class HomeController < ApplicationController
     user_agent = request.headers['User-Agent']
     is_ai_agent = user_agent&.match?(/ChatGPT|Claude|GPTBot|ClaudeBot|Perplexity/i) || false
     
-    render Index.new.tap do |view|
-      view.user_agent = user_agent
-      view.is_ai_agent = is_ai_agent
-    end
+    view = Index.new
+    view.user_agent = user_agent
+    view.is_ai_agent = is_ai_agent
+    render view
   end
 end 
